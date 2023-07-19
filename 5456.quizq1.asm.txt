@@ -1,0 +1,39 @@
+[org 0x100]
+
+jmp start
+array_1 : dw 1,2,3,4,5
+array_3 : dw 0,0,0,0,0
+
+
+
+start :
+mov ax , [array_1]
+mov bx , [array_3]
+mov dx , 0
+mov si , 0
+mov bi , 0
+mov cx , [array_1 + si]
+
+
+l1: 
+mov ax , [array_1 + si]
+add dx , 3 
+
+sub ax , 1
+cmp ax , 0 
+je l2
+
+
+l2 : 
+mov bx , [array_3 + bi]
+mov bx , dx
+mov dx , 0 
+add si , 2
+add bi , 2
+cmp bi , 10
+jne l1
+
+
+
+mov ax , 0x4c00
+int 0x21
